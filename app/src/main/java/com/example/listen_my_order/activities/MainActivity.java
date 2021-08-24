@@ -14,11 +14,10 @@ import android.widget.Button;
 
 import com.example.listen_my_order.R;
 
-import euphony.lib.receiver.EuRxManager;
-
 public class MainActivity extends AppCompatActivity {
     private Button importMenuButton;
     private Button ownerButton;
+    private Button addMenuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         importMenuButton = findViewById(R.id.import_menu_button);
         ownerButton = findViewById(R.id.owner_button);
+        addMenuButton = findViewById(R.id.add_menu);
 
         int permission = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.RECORD_AUDIO);
 
@@ -47,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, OwnerActivity.class));
+            }
+        });
+
+        addMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, AddMenuActivity.class));
             }
         });
 
