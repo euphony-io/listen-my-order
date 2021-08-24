@@ -17,16 +17,20 @@ import euphony.lib.receiver.EuRxManager;
 
 public class ImportMenuActivity extends AppCompatActivity {
 
+    private TextView storeNameView;
+    private RecyclerView menuListView;
+
+    private EuRxManager mRxManager = new EuRxManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import_menu);
 
-        TextView storeNameView = (TextView) findViewById(R.id.tv_store_name);
-        RecyclerView menuListView = (RecyclerView) findViewById(R.id.rv_menu_list);
+        storeNameView = (TextView) findViewById(R.id.tv_store_name);
+        menuListView = (RecyclerView) findViewById(R.id.rv_menu_list);
         menuListView.setLayoutManager(new LinearLayoutManager(this));
 
-        EuRxManager mRxManager = new EuRxManager();
         mRxManager.setAcousticSensor(new AcousticSensor() {
             @Override
             public void notify(String letters) {
