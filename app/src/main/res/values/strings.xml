@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">listen-my-order</string>
-    <string name="tv_title_menu">Menu</string>
-    <string name="btn_export_menu">Export\n Menu</string>
 </resources>
