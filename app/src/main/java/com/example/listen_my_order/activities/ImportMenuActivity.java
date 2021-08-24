@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.listen_my_order.R;
@@ -39,7 +38,7 @@ public class ImportMenuActivity extends AppCompatActivity {
                 ArrayList<String> menuList = new ArrayList<>();
                 menuList.add(letters); //Todo: letters에서 menu를 각각 분리해 menuList에 저장
 
-                RecyclerAdapter adapter = new RecyclerAdapter(menuList);
+                ImportMenuAdapter adapter = new ImportMenuAdapter(menuList);
                 menuListView.setAdapter(adapter);
             }
         });

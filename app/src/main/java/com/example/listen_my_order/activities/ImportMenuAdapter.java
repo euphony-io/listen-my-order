@@ -12,11 +12,11 @@ import com.example.listen_my_order.R;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class ImportMenuAdapter extends RecyclerView.Adapter<ImportMenuAdapter.ViewHolder> {
 
     private ArrayList<String> mData = null;
 
-    RecyclerAdapter(ArrayList<String> list) {
+    ImportMenuAdapter(ArrayList<String> list) {
         mData = list;
     }
 
@@ -34,19 +34,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     // onCreateViewHolder() - create ViewHolder object for itemView and return it.
     @Override
-    public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ImportMenuAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = inflater.inflate(R.layout.recyclerview_item, parent, false);
-        RecyclerAdapter.ViewHolder vh = new RecyclerAdapter.ViewHolder(view);
+        ImportMenuAdapter.ViewHolder vh = new ImportMenuAdapter.ViewHolder(view);
 
         return vh;
     }
 
     // onBindViewHolder() - set data corresponding to position of mData to itemView of viewHolder.
     @Override
-    public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ImportMenuAdapter.ViewHolder holder, int position) {
         String text = mData.get(position);
         holder.tv.setText(text);
     }
