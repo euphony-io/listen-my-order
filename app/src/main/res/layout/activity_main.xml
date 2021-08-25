@@ -17,6 +17,12 @@
         android:id="@+id/owner_button"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
-        android:text="owner"/>
+        android:text="export menu"/>
+
+    <Button
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:text="add menu"
+        android:id="@+id/add_menu"/>
 
 </LinearLayout>
