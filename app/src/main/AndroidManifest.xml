@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Listenmyorder">
         <activity
+            android:name=".activities.AddMenuActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.ImportMenuActivity"
             android:exported="true" />
         <activity
