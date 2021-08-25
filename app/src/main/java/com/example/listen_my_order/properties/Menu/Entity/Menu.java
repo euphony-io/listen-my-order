@@ -12,6 +12,7 @@ public class Menu {
     private String menuName;
     @ColumnInfo(name = "price")
     private String price;
+    //menu description 추가
 
     public Menu(String menuName, String price) {
         this.menuName = menuName;
