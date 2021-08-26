@@ -1,5 +1,11 @@
 package com.example.listen_my_order;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -16,7 +22,9 @@ public class ImportMenuActivityTest {
     public ActivityTestRule<ImportMenuActivity> importMenuActivityTestRule = new ActivityTestRule<>(ImportMenuActivity.class);
 
     @Test
-    public void testEmpty() {
-
+    public void testStopImport() {
+        onView(withId(R.id.btn_set_import))
+                .perform(click())
+                .check(matches(withText(R.string.btn_start_listen)));
     }
 }
