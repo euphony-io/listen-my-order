@@ -2,6 +2,6 @@
     <string name="app_name">listen-my-order</string>
     <string name="store_name">Store Name</string>
     <string name="tv_title_menu">Menu</string>
-    <string name="btn_export_menu">Export\n Menu</string>
+    <string name="btn_export_menu">Export\nMenu</string>
 </resources>
 

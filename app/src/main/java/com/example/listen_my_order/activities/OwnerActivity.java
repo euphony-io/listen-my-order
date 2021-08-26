@@ -150,7 +150,7 @@ public class OwnerActivity extends AppCompatActivity {
                 index++;
             }
             
-            euTxManager.process(-1);
+//            euTxManager.process(-1);
             btn_export_menu.setText("Exporting\nMenu...");
             speakOn = true;
         }
