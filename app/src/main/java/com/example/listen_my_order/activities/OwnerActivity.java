@@ -8,29 +8,33 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.listen_my_order.R;
+import com.example.listen_my_order.adapter.ExportMenuAdapter;
 
 import java.util.ArrayList;
 
+import euphony.lib.transmitter.EuTxManager;
+
 public class OwnerActivity extends AppCompatActivity {
+    // Properties
+    boolean speakOn = false;
 
     // Components
     private Button btn_export_menu, btn_add;
     private ImageView iv_back;
-    private OnClickListener onClickListener;
+    private OnClickListener onClickListener = new OnClickListener();
+    private EuTxManager euTxManager = new EuTxManager();
     // For menuList
     private RecyclerView rv_menu;
     private LinearLayoutManager linearLayoutManager;
-    private ArrayList<MenuData> menuList;
-    private MenuAdapter menuAdapter;
+    private ExportMenuAdapter exportMenuAdapter;
+    private ArrayList<MenuData> menuList = new ArrayList<MenuData>();
     // Dialogs
     private Dialog dialog_new_menu;
 
@@ -38,7 +42,6 @@ public class OwnerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
-        onClickListener = new OnClickListener();
 
         // Set components
         this.btn_export_menu = (Button)findViewById(R.id.btn_export_menu);
@@ -49,11 +52,10 @@ public class OwnerActivity extends AppCompatActivity {
         // Set recyclerView
         this.linearLayoutManager = new LinearLayoutManager(this);
         this.rv_menu.setLayoutManager(this.linearLayoutManager);
-        this.menuList = new ArrayList<MenuData>();
 
         // Set adapter
-        this.menuAdapter = new MenuAdapter(this.menuList);
-        this.rv_menu.setAdapter(this.menuAdapter);
+        this.exportMenuAdapter = new ExportMenuAdapter(this.menuList);
+        this.rv_menu.setAdapter(this.exportMenuAdapter);
 
         // Set onClickListeners
         this.btn_export_menu.setOnClickListener(this.onClickListener);
@@ -88,11 +90,6 @@ public class OwnerActivity extends AppCompatActivity {
         this.dialog_new_menu.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         this.dialog_new_menu.setContentView(R.layout.dialog_new_menu);
 
-//        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-//        lp.copyFrom(dialog_new_menu.getWindow().getAttributes());
-//        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-//        this.dialog_new_menu.getWindow().setAttributes(lp);
-
         // Components
         EditText et_name = (EditText) dialog_new_menu.findViewById(R.id.et_name);
         EditText et_content = (EditText) dialog_new_menu.findViewById(R.id.et_content);
@@ -122,7 +119,7 @@ public class OwnerActivity extends AppCompatActivity {
                 // Add new menu in rv_menu
                 MenuData menuData = new MenuData(name, content, price);
                 menuList.add(menuData);
-                menuAdapter.notifyDataSetChanged();
+                exportMenuAdapter.notifyDataSetChanged();
 
                 dialog_new_menu.dismiss();
             }
@@ -138,6 +135,24 @@ public class OwnerActivity extends AppCompatActivity {
     }
 
     private void exportMenu(){
-
+        if(speakOn){
+            euTxManager.stop();
+            btn_export_menu.setText("Export\nMenu");
+            speakOn = false;
+        }else{
+            // To generate acoustic data
+            int index = 0;
+            for(MenuData menuData : menuList){
+                euTxManager.euInitTransmit(Integer.toString(index));
+                euTxManager.euInitTransmit(menuData.getName());
+                euTxManager.euInitTransmit(menuData.getContent());
+                euTxManager.euInitTransmit(Float.toString(menuData.getPrice()));
+                index++;
+            }
+            
+            euTxManager.process(-1);
+            btn_export_menu.setText("Exporting\nMenu...");
+            speakOn = true;
+        }
     }
 }
