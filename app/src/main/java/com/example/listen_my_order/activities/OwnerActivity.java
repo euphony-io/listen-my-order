@@ -8,15 +8,14 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.listen_my_order.R;
+import com.example.listen_my_order.adapter.ExportMenuAdapter;
 
 import java.util.ArrayList;
 
@@ -30,7 +29,7 @@ public class OwnerActivity extends AppCompatActivity {
     private RecyclerView rv_menu;
     private LinearLayoutManager linearLayoutManager;
     private ArrayList<MenuData> menuList;
-    private MenuAdapter menuAdapter;
+    private ExportMenuAdapter exportMenuAdapter;
     // Dialogs
     private Dialog dialog_new_menu;
 
@@ -52,8 +51,8 @@ public class OwnerActivity extends AppCompatActivity {
         this.menuList = new ArrayList<MenuData>();
 
         // Set adapter
-        this.menuAdapter = new MenuAdapter(this.menuList);
-        this.rv_menu.setAdapter(this.menuAdapter);
+        this.exportMenuAdapter = new ExportMenuAdapter(this.menuList);
+        this.rv_menu.setAdapter(this.exportMenuAdapter);
 
         // Set onClickListeners
         this.btn_export_menu.setOnClickListener(this.onClickListener);
@@ -88,11 +87,6 @@ public class OwnerActivity extends AppCompatActivity {
         this.dialog_new_menu.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         this.dialog_new_menu.setContentView(R.layout.dialog_new_menu);
 
-//        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-//        lp.copyFrom(dialog_new_menu.getWindow().getAttributes());
-//        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-//        this.dialog_new_menu.getWindow().setAttributes(lp);
-
         // Components
         EditText et_name = (EditText) dialog_new_menu.findViewById(R.id.et_name);
         EditText et_content = (EditText) dialog_new_menu.findViewById(R.id.et_content);
@@ -122,7 +116,7 @@ public class OwnerActivity extends AppCompatActivity {
                 // Add new menu in rv_menu
                 MenuData menuData = new MenuData(name, content, price);
                 menuList.add(menuData);
-                menuAdapter.notifyDataSetChanged();
+                exportMenuAdapter.notifyDataSetChanged();
 
                 dialog_new_menu.dismiss();
             }
