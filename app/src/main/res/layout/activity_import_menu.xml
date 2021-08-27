@@ -34,6 +34,6 @@
         app:layout_constraintTop_toBottomOf="@id/tv_store_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/recyclerview_item"/>
+        tools:listitem="@layout/item_list_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,26 +9,31 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.listen_my_order.R;
+import com.example.listen_my_order.activities.MenuData;
 
 import java.util.ArrayList;
 
 public class ImportMenuAdapter extends RecyclerView.Adapter<ImportMenuAdapter.ViewHolder> {
 
-    private ArrayList<String> mData = null;
+    private ArrayList<MenuData> mData;
 
-    public ImportMenuAdapter(ArrayList<String> list) {
+    public ImportMenuAdapter(ArrayList<MenuData> list) {
         mData = list;
     }
 
     // ViewHolder class that store itemView
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv;
+        protected TextView tv_name;
+        protected TextView tv_content;
+        protected TextView tv_price;
 
         ViewHolder(View itemView) {
             super(itemView);
 
             // reference about view object (hold strong reference)
-            tv = itemView.findViewById(R.id.tv_rc_item);
+            this.tv_name = (TextView) itemView.findViewById(R.id.tv_name);
+            this.tv_content = (TextView) itemView.findViewById(R.id.tv_content);
+            this.tv_price = (TextView) itemView.findViewById(R.id.tv_price);
         }
     }
 
@@ -38,7 +43,7 @@ public class ImportMenuAdapter extends RecyclerView.Adapter<ImportMenuAdapter.Vi
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.recyclerview_item, parent, false);
+        View view = inflater.inflate(R.layout.item_list_menu, parent, false);
         ImportMenuAdapter.ViewHolder vh = new ImportMenuAdapter.ViewHolder(view);
 
         return vh;
@@ -47,13 +52,22 @@ public class ImportMenuAdapter extends RecyclerView.Adapter<ImportMenuAdapter.Vi
     // onBindViewHolder() - set data corresponding to position of mData to itemView of viewHolder.
     @Override
     public void onBindViewHolder(ImportMenuAdapter.ViewHolder holder, int position) {
-        String text = mData.get(position);
-        holder.tv.setText(text);
+        holder.tv_name.setText(mData.get(position).getName());
+        holder.tv_content.setText(mData.get(position).getContent());
+        holder.tv_price.setText("$ " + Float.toString(mData.get(position).getPrice()));
+
+        holder.itemView.setTag(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Todo:메뉴 선택 기능 구현
+            }
+        });
     }
 
     // getItemCount() - return mData size.
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mData != null ? mData.size() : 0;
     }
 }

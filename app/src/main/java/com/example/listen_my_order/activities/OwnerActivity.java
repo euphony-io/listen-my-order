@@ -144,9 +144,13 @@ public class OwnerActivity extends AppCompatActivity {
             int index = 0;
             for(MenuData menuData : menuList){
                 euTxManager.euInitTransmit(Integer.toString(index));
+                euTxManager.euInitTransmit(" ");
                 euTxManager.euInitTransmit(menuData.getName());
+                euTxManager.euInitTransmit(" ");
                 euTxManager.euInitTransmit(menuData.getContent());
+                euTxManager.euInitTransmit(" ");
                 euTxManager.euInitTransmit(Float.toString(menuData.getPrice()));
+                euTxManager.euInitTransmit("\n");
                 index++;
             }
             
