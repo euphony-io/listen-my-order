@@ -13,8 +13,6 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'adopt'
-        cache: gradle
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
@@ -23,4 +21,4 @@ jobs:
     - name: Get commit id
       env: 
         COMMIT_ID: ${{ github.sha }}
-        run: echo "Commit id => $COMMIT_ID"
+      run: echo "Commit id => $COMMIT_ID"
