@@ -20,13 +20,14 @@ import euphony.lib.receiver.AcousticSensor;
 import euphony.lib.receiver.EuRxManager;
 
 public class ImportMenuActivity extends AppCompatActivity {
-
+    // Components
     private ActionBar appbar;
-    private boolean mode = true;
     private Button setImportButton;
     private TextView storeNameView;
     private RecyclerView menuListView;
 
+    // Properties
+    private boolean mode = true;
     private EuRxManager mRxManager = new EuRxManager();
 
     @Override
@@ -34,10 +35,12 @@ public class ImportMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import_menu);
 
+        // Set ActionBar
         appbar = getSupportActionBar();
         appbar.setTitle("Menu list");
         appbar.setDisplayHomeAsUpEnabled(true);
 
+        // Set components
         setImportButton = (Button) findViewById(R.id.btn_set_import);
         storeNameView = (TextView) findViewById(R.id.tv_store_name);
         menuListView = (RecyclerView) findViewById(R.id.rv_menu_list);

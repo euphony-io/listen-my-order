@@ -1,5 +1,6 @@
 package com.example.listen_my_order.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +27,7 @@ public class OwnerActivity extends AppCompatActivity {
     boolean speakOn = false;
 
     // Components
+    private ActionBar appbar;
     private Button btn_export_menu, btn_add;
     private ImageView iv_back;
     private OnClickListener onClickListener = new OnClickListener();
@@ -42,6 +44,10 @@ public class OwnerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
+
+        // Set ActionBar
+        appbar = getSupportActionBar();
+        appbar.setTitle("Set Menu list");
 
         // Set components
         this.btn_export_menu = (Button)findViewById(R.id.btn_export_menu);
