@@ -12,10 +12,21 @@ public class Menu {
     private String menuName;
     @ColumnInfo(name = "price")
     private String price;
+    @ColumnInfo(name="description")
+    private String description;
 
-    public Menu(String menuName, String price) {
+    public Menu(String menuName, String price, String description) {
         this.menuName = menuName;
         this.price = price;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(final String description) {
+        this.description = description;
     }
 
     public String getMenuName() {
@@ -44,6 +55,6 @@ public class Menu {
 
     @Override
     public String toString() {
-        return "id : " + this.menuId + " name : " + this.menuName + " price: " + this.price;
+        return "id : " + this.menuId + " name : " + this.menuName + " price: " + this.price + " description : " + this.description;
     }
 }
