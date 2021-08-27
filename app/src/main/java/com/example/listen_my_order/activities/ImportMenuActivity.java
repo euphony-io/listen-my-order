@@ -69,6 +69,8 @@ public class ImportMenuActivity extends AppCompatActivity {
                 }
                 importMenuAdapter.notifyDataSetChanged();
 
+                Toast.makeText(getApplicationContext(), "Finish importing!", Toast.LENGTH_SHORT).show();
+
                 mRxManager.finish();
                 setImportButton.setText(R.string.btn_start_listen);
                 mode = false;
