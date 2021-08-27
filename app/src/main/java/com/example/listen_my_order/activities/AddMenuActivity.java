@@ -21,6 +21,7 @@ import java.util.List;
 public class AddMenuActivity extends AppCompatActivity {
     private EditText menuNameEditText;
     private EditText menuPriceEditText;
+    private EditText menuDescriptionEditText;
     private Button addMenuButton;
     private MenuDatabase menuDatabase;
     private TextView resultTextView;
@@ -33,6 +34,7 @@ public class AddMenuActivity extends AppCompatActivity {
         menuPriceEditText = findViewById(R.id.et_menu_price);
         addMenuButton = findViewById(R.id.btn_add_menu);
         resultTextView = findViewById(R.id.tv_menu_result);
+        menuDescriptionEditText = findViewById(R.id.et_menu_description);
         menuDatabase = MenuDatabase.getAppDatabase(AddMenuActivity.this);
 
         menuDatabase.menuDAO().loadAllMenus().observe(this, new Observer<List<Menu>>() {
@@ -51,9 +53,10 @@ public class AddMenuActivity extends AppCompatActivity {
                     Toast.makeText(AddMenuActivity.this, "입력 오류", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    new InsertAsyncTask(menuDatabase.menuDAO()).execute(new Menu(menuNameEditText.getText().toString(), menuPriceEditText.getText().toString()));
+                    new InsertAsyncTask(menuDatabase.menuDAO()).execute(new Menu(menuNameEditText.getText().toString(), menuPriceEditText.getText().toString(), menuDescriptionEditText.getText().toString()));
                     menuPriceEditText.setText("");
                     menuNameEditText.setText("");
+                    menuDescriptionEditText.setText("");
                 }
             }
         });
