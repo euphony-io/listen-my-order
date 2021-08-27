@@ -1,4 +1,4 @@
-package com.example.listen_my_order.activities;
+package com.example.listen_my_order.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ public class ImportMenuAdapter extends RecyclerView.Adapter<ImportMenuAdapter.Vi
 
     private ArrayList<String> mData = null;
 
-    ImportMenuAdapter(ArrayList<String> list) {
+    public ImportMenuAdapter(ArrayList<String> list) {
         mData = list;
     }
 
