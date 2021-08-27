@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.listen_my_order.R;
-import com.example.listen_my_order.adapter.ImportMenuAdapter;
 
 import java.util.ArrayList;
 

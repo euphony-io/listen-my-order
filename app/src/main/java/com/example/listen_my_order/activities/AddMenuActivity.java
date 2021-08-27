@@ -1,8 +1,12 @@
 package com.example.listen_my_order.activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.loader.content.AsyncTaskLoader;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.AsyncTask;
 import android.view.View;
@@ -10,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.os.AsyncTask;
 import com.example.listen_my_order.R;
 import com.example.listen_my_order.properties.Menu.DAO.MenuDAO;
 import com.example.listen_my_order.properties.Menu.Database.MenuDatabase;
@@ -21,7 +25,6 @@ import java.util.List;
 public class AddMenuActivity extends AppCompatActivity {
     private EditText menuNameEditText;
     private EditText menuPriceEditText;
-    private EditText menuDescriptionEditText;
     private Button addMenuButton;
     private MenuDatabase menuDatabase;
     private TextView resultTextView;
@@ -30,11 +33,10 @@ public class AddMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_menu);
-        menuNameEditText = findViewById(R.id.et_menu_name);
-        menuPriceEditText = findViewById(R.id.et_menu_price);
-        addMenuButton = findViewById(R.id.btn_add_menu);
-        resultTextView = findViewById(R.id.tv_menu_result);
-        menuDescriptionEditText = findViewById(R.id.et_menu_description);
+        menuNameEditText = findViewById(R.id.menu_name_edit_text);
+        menuPriceEditText = findViewById(R.id.menu_price_edit_text);
+        addMenuButton = findViewById(R.id.add_menu_button);
+        resultTextView = findViewById(R.id.menu_result_text_view);
         menuDatabase = MenuDatabase.getAppDatabase(AddMenuActivity.this);
 
         menuDatabase.menuDAO().loadAllMenus().observe(this, new Observer<List<Menu>>() {
@@ -53,10 +55,9 @@ public class AddMenuActivity extends AppCompatActivity {
                     Toast.makeText(AddMenuActivity.this, "입력 오류", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    new InsertAsyncTask(menuDatabase.menuDAO()).execute(new Menu(menuNameEditText.getText().toString(), menuPriceEditText.getText().toString(), menuDescriptionEditText.getText().toString()));
+                    new InsertAsyncTask(menuDatabase.menuDAO()).execute(new Menu(menuNameEditText.getText().toString(), menuPriceEditText.getText().toString()));
                     menuPriceEditText.setText("");
                     menuNameEditText.setText("");
-                    menuDescriptionEditText.setText("");
                 }
             }
         });
