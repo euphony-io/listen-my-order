@@ -14,6 +14,7 @@ import com.example.listen_my_order.R;
 import com.example.listen_my_order.adapter.ImportMenuAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import euphony.lib.receiver.AcousticSensor;
 import euphony.lib.receiver.EuRxManager;
@@ -60,9 +61,10 @@ public class ImportMenuActivity extends AppCompatActivity {
         mRxManager.setAcousticSensor(new AcousticSensor() {
             @Override
             public void notify(String letters) {
-//                storeNameView.setText(letters); //Todo: letters에서 storeName만 분리해 저장
+                ArrayList<String> datas = new ArrayList<>(Arrays.asList(letters.split("\n")));
+                storeNameView.setText(datas.remove(0));
 
-                for(String menu : letters.split("\n")) {
+                for(String menu : datas) {
                     String[] menuInfo = menu.split(" ");
                     MenuData menuData = new MenuData(menuInfo[1], menuInfo[2], Float.parseFloat(menuInfo[3]));
                     menuList.add(menuData);
