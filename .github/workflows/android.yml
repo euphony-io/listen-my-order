@@ -20,7 +20,7 @@ jobs:
           distribution: 'adopt'
           cache: gradle
       - name: Unit tests
-        run: bash ./gradlew ExampleUnitTest --stacktrace
+        run: bash ./gradlew test --stacktrace
   build:
 
     runs-on: ubuntu-latest
