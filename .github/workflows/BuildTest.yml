@@ -2,7 +2,7 @@ name: Android CI
 
 on:
   push:
-    branches: [ dev/hoyoung ]
+    branches: [ git-hub-action ]
   pull_request:
     branches: [ develop ]
 
@@ -19,6 +19,8 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           cache: gradle
+      - name: Unit tests
+          run: bash ./gradlew ExampleUnitTest --stacktrace
   build:
 
     runs-on: ubuntu-latest
@@ -31,8 +33,7 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
-    - name: Unit tests
-      run: bash ./gradelw ExampleUnitTest --stacktrace
+
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
