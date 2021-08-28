@@ -15,10 +15,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.listen_my_order.R;
-import com.example.listen_my_order.adapter.ExportMenuAdapter;
+import com.example.listen_my_order.adapters.ExportMenuAdapter;
 
 import java.util.ArrayList;
 
+import euphony.lib.receiver.EuRxManager;
 import euphony.lib.transmitter.EuTxManager;
 
 public class OwnerActivity extends AppCompatActivity {

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.listen_my_order.R;
-import com.example.listen_my_order.adapter.ImportMenuAdapter;
+import com.example.listen_my_order.adapters.ImportMenuAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;

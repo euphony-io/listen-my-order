@@ -1,4 +1,4 @@
-package com.example.listen_my_order.adapter;
+package com.example.listen_my_order.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
