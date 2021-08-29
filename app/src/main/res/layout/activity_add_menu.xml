@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="menu name : "/>
         <EditText
-            android:id="@+id/menu_name_edit_text"
+            android:id="@+id/et_menu_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -31,18 +31,32 @@
             android:layout_height="wrap_content"
             android:text="menu price : "/>
         <EditText
-            android:id="@+id/menu_price_edit_text"
+            android:id="@+id/et_menu_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="menu description : "/>
+        <EditText
+            android:id="@+id/et_menu_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <Button
-        android:id="@+id/add_menu_button"
+        android:id="@+id/btn_add_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="add menu"/>
     <TextView
         android:hint="results"
-        android:id="@+id/menu_result_text_view"
+        android:id="@+id/tv_menu_result"
         android:layout_width="match_parent"
         android:layout_height="300dp"/>
 
