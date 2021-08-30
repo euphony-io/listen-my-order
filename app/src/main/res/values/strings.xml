@@ -6,5 +6,8 @@
     <string name="et_store_name">Input store name</string>
     <string name="tv_title_menu">Menu</string>
     <string name="btn_export_menu">Export\nMenu</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_add">Add</string>
 </resources>
 

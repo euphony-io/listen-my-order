@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +35,9 @@ public class ImportMenuActivity extends AppCompatActivity {
     private ImportMenuAdapter importMenuAdapter;
     private ArrayList<MenuData> menuList = new ArrayList<>();
 
+    // Dialog
+    private Dialog menuInfoDialog;
+
     // Properties
     private boolean listenOn = true;
     private EuRxManager mRxManager = new EuRxManager();
@@ -51,6 +57,8 @@ public class ImportMenuActivity extends AppCompatActivity {
         storeNameView = (TextView) findViewById(R.id.tv_store_name);
         menuListView = (RecyclerView) findViewById(R.id.rv_menu_list);
         menuListView.setLayoutManager(new LinearLayoutManager(this));
+
+        menuList.add(new MenuData("pizza", "taste oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo", 20)); //임시데이터
 
         // Set adapter to recyclerView
         importMenuAdapter = new ImportMenuAdapter(menuList);
@@ -77,7 +85,37 @@ public class ImportMenuActivity extends AppCompatActivity {
         importMenuAdapter.setOnItemClickListener(new ImportMenuAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View itemView, int position) {
-                // Todo: dialog 구현
+                menuInfoDialog = new Dialog(ImportMenuActivity.this);
+                menuInfoDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                menuInfoDialog.setContentView(R.layout.dialog_menu_info);
+
+                final MenuData item = menuList.get(position);
+
+                TextView menuName = (TextView) menuInfoDialog.findViewById(R.id.tv_menu_name);
+                TextView menuContent = (TextView) menuInfoDialog.findViewById(R.id.tv_menu_content);
+                TextView menuPrice = (TextView) menuInfoDialog.findViewById(R.id.tv_menu_price);
+                Button addButton = (Button) menuInfoDialog.findViewById(R.id.btn_add);
+                Button cencelButton = (Button) menuInfoDialog.findViewById(R.id.btn_cancel);
+
+                menuName.setText(item.getName());
+                menuContent.setText(item.getContent());
+                menuPrice.setText("$ " + Float.toString(item.getPrice()));
+
+                addButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        
+                    }
+                });
+
+                cencelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        menuInfoDialog.dismiss();
+                    }
+                });
+
+                menuInfoDialog.show();
             }
         });
 
