@@ -26,12 +26,14 @@ public class ImportMenuActivity extends AppCompatActivity {
     private ActionBar appbar;
     private Button setImportButton;
     private TextView storeNameView;
+
+    // For menuList
     private RecyclerView menuListView;
     private ImportMenuAdapter importMenuAdapter;
     private ArrayList<MenuData> menuList = new ArrayList<>();
 
     // Properties
-    private boolean mode = true;
+    private boolean listenOn = true;
     private EuRxManager mRxManager = new EuRxManager();
 
     @Override
@@ -49,22 +51,33 @@ public class ImportMenuActivity extends AppCompatActivity {
         storeNameView = (TextView) findViewById(R.id.tv_store_name);
         menuListView = (RecyclerView) findViewById(R.id.rv_menu_list);
         menuListView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Set adapter to recyclerView
         importMenuAdapter = new ImportMenuAdapter(menuList);
         menuListView.setAdapter(importMenuAdapter);
 
+        // setOnClickListener for setImportButton
         setImportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mode) {
+                if(listenOn) {
                     mRxManager.finish();
                     setImportButton.setText(R.string.btn_start_listen);
-                    mode = false;
+                    listenOn = false;
                 }
                 else {
                     mRxManager.listen();
                     setImportButton.setText(R.string.btn_stop_listen);
-                    mode = true;
+                    listenOn = true;
                 }
+            }
+        });
+
+        // setOnClickListener for menuList itemView
+        importMenuAdapter.setOnItemClickListener(new ImportMenuAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View itemView, int position) {
+                // Todo: dialog 구현
             }
         });
 
@@ -81,11 +94,11 @@ public class ImportMenuActivity extends AppCompatActivity {
                 }
                 importMenuAdapter.notifyDataSetChanged();
 
-                Toast.makeText(getApplicationContext(), "Finish importing!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ImportMenuActivity.this, "Finish importing!", Toast.LENGTH_SHORT).show();
 
                 mRxManager.finish();
                 setImportButton.setText(R.string.btn_start_listen);
-                mode = false;
+                listenOn = false;
             }
         });
         mRxManager.listen();
