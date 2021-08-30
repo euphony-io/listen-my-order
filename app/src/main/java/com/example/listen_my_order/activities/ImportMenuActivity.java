@@ -10,11 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.listen_my_order.R;
 import com.example.listen_my_order.adapters.ImportMenuAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import euphony.lib.receiver.AcousticSensor;
 import euphony.lib.receiver.EuRxManager;
@@ -25,6 +27,8 @@ public class ImportMenuActivity extends AppCompatActivity {
     private Button setImportButton;
     private TextView storeNameView;
     private RecyclerView menuListView;
+    private ImportMenuAdapter importMenuAdapter;
+    private ArrayList<MenuData> menuList = new ArrayList<>();
 
     // Properties
     private boolean mode = true;
@@ -45,6 +49,8 @@ public class ImportMenuActivity extends AppCompatActivity {
         storeNameView = (TextView) findViewById(R.id.tv_store_name);
         menuListView = (RecyclerView) findViewById(R.id.rv_menu_list);
         menuListView.setLayoutManager(new LinearLayoutManager(this));
+        importMenuAdapter = new ImportMenuAdapter(menuList);
+        menuListView.setAdapter(importMenuAdapter);
 
         setImportButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +71,21 @@ public class ImportMenuActivity extends AppCompatActivity {
         mRxManager.setAcousticSensor(new AcousticSensor() {
             @Override
             public void notify(String letters) {
-                storeNameView.setText(letters); //Todo: letters에서 storeName만 분리해 저장
+                ArrayList<String> datas = new ArrayList<>(Arrays.asList(letters.split("\n")));
+                storeNameView.setText(datas.remove(0));
 
-                ArrayList<String> menuList = new ArrayList<>();
-                menuList.add(letters); //Todo: letters에서 menu를 각각 분리해 menuList에 저장
+                for(String menu : datas) {
+                    String[] menuInfo = menu.split(" ");
+                    MenuData menuData = new MenuData(menuInfo[1], menuInfo[2], Float.parseFloat(menuInfo[3]));
+                    menuList.add(menuData);
+                }
+                importMenuAdapter.notifyDataSetChanged();
 
-                ImportMenuAdapter adapter = new ImportMenuAdapter(menuList);
-                menuListView.setAdapter(adapter);
+                Toast.makeText(getApplicationContext(), "Finish importing!", Toast.LENGTH_SHORT).show();
+
+                mRxManager.finish();
+                setImportButton.setText(R.string.btn_start_listen);
+                mode = false;
             }
         });
         mRxManager.listen();
