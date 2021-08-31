@@ -4,8 +4,8 @@ Listen my order is sample application from the [euphony library](https://github.
 Our goal is to help restaurateurs set up low-cost food ordering systems instead of kiosks.
 
 - #### Features
-  - Export the menu list through the microphone.
-  - Import the menu list via the speaker.
+  - Export the menu list through the speaker.
+  - Import the menu list via the microphone.
   - Add a menu to menu list. Menu information consists of name, price and description.
 
 ### Installation
