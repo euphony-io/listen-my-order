@@ -17,6 +17,8 @@ import com.example.listen_my_order.adapters.ExportOrderAdapter;
 
 import java.util.ArrayList;
 
+import euphony.lib.transmitter.EuTxManager;
+
 public class ExportOrderActivity extends AppCompatActivity {
     // Components
     private ActionBar appbar;
@@ -30,6 +32,8 @@ public class ExportOrderActivity extends AppCompatActivity {
 
     // Properties
     private float priceSum = 0;
+    private boolean speakOn = false;
+    private EuTxManager euTxManager = new EuTxManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +68,25 @@ public class ExportOrderActivity extends AppCompatActivity {
         exportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Todo: 데이터 송출
+                if(speakOn) {
+                    euTxManager.stop();
+                    exportButton.setText(R.string.btn_export_order);
+                    speakOn = false;
+                }
+                else {
+                    String message = "";
+                    message += Float.toString(priceSum);
+
+                    for(MenuData order : orderList) {
+                        message += "\n" + order.getName();
+                    }
+
+                    euTxManager.euInitTransmit(message);
+                    euTxManager.process(-1);
+
+                    exportButton.setText(R.string.btn_exporting_order);
+                    speakOn = true;
+                }
             }
         });
     }
