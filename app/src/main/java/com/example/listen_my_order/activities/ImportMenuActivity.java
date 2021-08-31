@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,8 +59,6 @@ public class ImportMenuActivity extends AppCompatActivity {
         menuListView = (RecyclerView) findViewById(R.id.rv_menu_list);
         menuListView.setLayoutManager(new LinearLayoutManager(this));
 
-        menuList.add(new MenuData("pizza", "taste oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo", 20)); //임시데이터
-
         // Set adapter to recyclerView
         importMenuAdapter = new ImportMenuAdapter(menuList);
         menuListView.setAdapter(importMenuAdapter);
@@ -104,7 +103,7 @@ public class ImportMenuActivity extends AppCompatActivity {
                 addButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        
+                        //Todo: checkbox가 check되도록
                     }
                 });
 
@@ -116,6 +115,18 @@ public class ImportMenuActivity extends AppCompatActivity {
                 });
 
                 menuInfoDialog.show();
+            }
+        });
+
+        // setOnClickListener for menuList checkBox
+        importMenuAdapter.setOnCheckBoxClickListener(new ImportMenuAdapter.OnCheckBoxClickListener() {
+            @Override
+            public void onItemClick(CheckBox checkBox, int position) {
+                if(checkBox.isChecked()) {
+                    //Todo: menu 장바구니에 넣기
+                } else {
+                    //Todo: menu 장바구니에서 빼기
+                }
             }
         });
 
