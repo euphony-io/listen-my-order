@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:text="@string/tv_total_price"
             android:textSize="25sp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:layout_marginEnd="10dp" />
 
         <TextView
             android:id="@+id/tv_total_price"
