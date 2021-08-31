@@ -35,6 +35,7 @@ public class ImportMenuActivity extends AppCompatActivity {
     private RecyclerView menuListView;
     private ImportMenuAdapter importMenuAdapter;
     private ArrayList<MenuData> menuList = new ArrayList<>();
+    private ArrayList<MenuData> selectedMenuList = new ArrayList<>();
 
     // Dialog
     private Dialog menuInfoDialog;
@@ -90,20 +91,36 @@ public class ImportMenuActivity extends AppCompatActivity {
 
                 final MenuData item = menuList.get(position);
 
+                CheckBox checkBox = itemView.findViewById(R.id.cb_item_add);
+
                 TextView menuName = (TextView) menuInfoDialog.findViewById(R.id.tv_menu_name);
                 TextView menuContent = (TextView) menuInfoDialog.findViewById(R.id.tv_menu_content);
                 TextView menuPrice = (TextView) menuInfoDialog.findViewById(R.id.tv_menu_price);
-                Button addButton = (Button) menuInfoDialog.findViewById(R.id.btn_add);
+                Button selectButton = (Button) menuInfoDialog.findViewById(R.id.btn_select);
                 Button cencelButton = (Button) menuInfoDialog.findViewById(R.id.btn_cancel);
 
                 menuName.setText(item.getName());
                 menuContent.setText(item.getContent());
                 menuPrice.setText("$ " + Float.toString(item.getPrice()));
 
-                addButton.setOnClickListener(new View.OnClickListener() {
+                if(checkBox.isChecked()) {
+                    selectButton.setText(R.string.btn_remove);
+                } else {
+                    selectButton.setText(R.string.btn_add);
+                }
+
+                selectButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //Todo: checkbox가 check되도록
+                        checkBox.toggle();
+
+                        if(checkBox.isChecked()) {
+                            selectedMenuList.add(item);
+                        } else {
+                            selectedMenuList.remove(item);
+                        }
+
+                        menuInfoDialog.dismiss();
                     }
                 });
 
@@ -122,10 +139,12 @@ public class ImportMenuActivity extends AppCompatActivity {
         importMenuAdapter.setOnCheckBoxClickListener(new ImportMenuAdapter.OnCheckBoxClickListener() {
             @Override
             public void onItemClick(CheckBox checkBox, int position) {
+                final MenuData item = menuList.get(position);
+
                 if(checkBox.isChecked()) {
-                    //Todo: menu 장바구니에 넣기
+                    selectedMenuList.add(item);
                 } else {
-                    //Todo: menu 장바구니에서 빼기
+                    selectedMenuList.remove(item);
                 }
             }
         });
