@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">listen-my-order</string>
-    <string name="store_name">Store Name</string>
+    <string name="btn_stop_listen">Stop Import</string>
+    <string name="btn_start_listen">Start Import</string>
+    <string name="tv_store_name">Store</string>
+    <string name="et_store_name">Input store name</string>
     <string name="tv_title_menu">Menu</string>
     <string name="btn_export_menu">Export\nMenu</string>
 </resources>

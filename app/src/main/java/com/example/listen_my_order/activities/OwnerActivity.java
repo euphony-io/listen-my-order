@@ -1,5 +1,6 @@
 package com.example.listen_my_order.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,8 +28,10 @@ public class OwnerActivity extends AppCompatActivity {
     boolean speakOn = false;
 
     // Components
+    private ActionBar appbar;
     private Button btn_export_menu, btn_add;
     private ImageView iv_back;
+    private EditText storeName;
     private OnClickListener onClickListener = new OnClickListener();
     private EuTxManager euTxManager = new EuTxManager();
     // For menuList
@@ -44,10 +47,15 @@ public class OwnerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
 
+        // Set ActionBar
+        appbar = getSupportActionBar();
+        appbar.setTitle("Set Menu list");
+
         // Set components
         this.btn_export_menu = (Button)findViewById(R.id.btn_export_menu);
         this.btn_add = (Button)findViewById(R.id.btn_add);
         this.iv_back = (ImageView)findViewById(R.id.iv_back);
+        this.storeName = (EditText)findViewById(R.id.et_store_name);
         this.rv_menu = (RecyclerView)findViewById(R.id.rv_menu);
 
         // Set recyclerView
@@ -142,11 +150,17 @@ public class OwnerActivity extends AppCompatActivity {
             speakOn = false;
         }else{
             // To generate acoustic data
+            euTxManager.euInitTransmit(storeName.getText().toString());
+
             int index = 0;
             for(MenuData menuData : menuList){
+                euTxManager.euInitTransmit("\n");
                 euTxManager.euInitTransmit(Integer.toString(index));
+                euTxManager.euInitTransmit(" ");
                 euTxManager.euInitTransmit(menuData.getName());
+                euTxManager.euInitTransmit(" ");
                 euTxManager.euInitTransmit(menuData.getContent());
+                euTxManager.euInitTransmit(" ");
                 euTxManager.euInitTransmit(Float.toString(menuData.getPrice()));
                 index++;
             }
