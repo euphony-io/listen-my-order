@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -37,7 +38,7 @@ public class ImportMenuActivity extends AppCompatActivity {
     private RecyclerView menuListView;
     private ImportMenuAdapter importMenuAdapter;
     private ArrayList<MenuData> menuList = new ArrayList<>();
-    private ArrayList<MenuData> selectedMenuList = new ArrayList<>();
+    private ArrayList<MenuData> orderList = new ArrayList<>();
 
     // Dialog
     private Dialog menuInfoDialog;
@@ -118,9 +119,9 @@ public class ImportMenuActivity extends AppCompatActivity {
                         checkBox.toggle();
 
                         if(checkBox.isChecked()) {
-                            selectedMenuList.add(item);
+                            orderList.add(item);
                         } else {
-                            selectedMenuList.remove(item);
+                            orderList.remove(item);
                         }
                         menuInfoDialog.dismiss();
                     }
@@ -144,9 +145,9 @@ public class ImportMenuActivity extends AppCompatActivity {
                 final MenuData item = menuList.get(position);
 
                 if(checkBox.isChecked()) {
-                    selectedMenuList.add(item);
+                    orderList.add(item);
                 } else {
-                    selectedMenuList.remove(item);
+                    orderList.remove(item);
                 }
             }
         });
@@ -155,7 +156,10 @@ public class ImportMenuActivity extends AppCompatActivity {
         goShopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Todo: 장바구니 페이지로 이동
+                Intent intent = new Intent(ImportMenuActivity.this, ExportOrderActivity.class);
+                intent.putExtra("OrderList", orderList);
+
+                startActivity(intent);
             }
         });
 

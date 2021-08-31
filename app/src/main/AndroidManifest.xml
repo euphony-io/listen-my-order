@@ -15,6 +15,9 @@
             android:name=".activities.AddMenuActivity"
             android:exported="true" />
         <activity
+            android:name=".activities.ExportOrderActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.ImportMenuActivity"
             android:exported="true" />
         <activity

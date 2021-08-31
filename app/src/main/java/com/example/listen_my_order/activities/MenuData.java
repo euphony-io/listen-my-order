@@ -1,6 +1,8 @@
 package com.example.listen_my_order.activities;
 
-public class MenuData {
+import java.io.Serializable;
+
+public class MenuData implements Serializable {
 
     private String name;
     private String content;
