@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.listen_my_order.R;
 import com.example.listen_my_order.adapters.ImportMenuAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +31,7 @@ public class ImportMenuActivity extends AppCompatActivity {
     private ActionBar appbar;
     private Button setImportButton;
     private TextView storeNameView;
+    private FloatingActionButton goShopButton;
 
     // For menuList
     private RecyclerView menuListView;
@@ -57,6 +59,7 @@ public class ImportMenuActivity extends AppCompatActivity {
         // Set components
         setImportButton = (Button) findViewById(R.id.btn_set_import);
         storeNameView = (TextView) findViewById(R.id.tv_store_name);
+        goShopButton = (FloatingActionButton) findViewById(R.id.fab_shop);
         menuListView = (RecyclerView) findViewById(R.id.rv_menu_list);
         menuListView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -119,7 +122,6 @@ public class ImportMenuActivity extends AppCompatActivity {
                         } else {
                             selectedMenuList.remove(item);
                         }
-
                         menuInfoDialog.dismiss();
                     }
                 });
@@ -146,6 +148,14 @@ public class ImportMenuActivity extends AppCompatActivity {
                 } else {
                     selectedMenuList.remove(item);
                 }
+            }
+        });
+
+        // setOnClickListener for flaoting action button
+        goShopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Todo: 장바구니 페이지로 이동
             }
         });
 
