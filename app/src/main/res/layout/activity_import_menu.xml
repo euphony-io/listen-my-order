@@ -49,6 +49,6 @@
         app:layout_constraintTop_toBottomOf="@id/tv_menu_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/item_list_menu"/>
+        tools:listitem="@layout/item_select_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,17 +33,17 @@ public class ImportMenuAdapter extends RecyclerView.Adapter<ImportMenuAdapter.Vi
 
     // ViewHolder class that store itemView
     public class ViewHolder extends RecyclerView.ViewHolder {
-        protected TextView tv_name;
-        protected TextView tv_content;
-        protected TextView tv_price;
+        protected TextView tv_item_name;
+        protected TextView tv_item_content;
+        protected TextView tv_item_price;
 
         ViewHolder(View itemView, final OnItemClickListener itemClickListener) {
             super(itemView);
 
             // reference about view object (hold strong reference)
-            this.tv_name = (TextView) itemView.findViewById(R.id.tv_name);
-            this.tv_content = (TextView) itemView.findViewById(R.id.tv_content);
-            this.tv_price = (TextView) itemView.findViewById(R.id.tv_price);
+            this.tv_item_name = (TextView) itemView.findViewById(R.id.tv_item_name);
+            this.tv_item_content = (TextView) itemView.findViewById(R.id.tv_item_content);
+            this.tv_item_price = (TextView) itemView.findViewById(R.id.tv_item_price);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -64,7 +64,7 @@ public class ImportMenuAdapter extends RecyclerView.Adapter<ImportMenuAdapter.Vi
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.item_list_menu, parent, false);
+        View view = inflater.inflate(R.layout.item_select_menu, parent, false);
         ImportMenuAdapter.ViewHolder vh = new ImportMenuAdapter.ViewHolder(view, mItemClickListener);
 
         return vh;
@@ -75,9 +75,9 @@ public class ImportMenuAdapter extends RecyclerView.Adapter<ImportMenuAdapter.Vi
     public void onBindViewHolder(ImportMenuAdapter.ViewHolder holder, int position) {
         MenuData item = mData.get(position);
 
-        holder.tv_name.setText(item.getName());
-        holder.tv_content.setText(item.getContent());
-        holder.tv_price.setText("$ " + Float.toString(item.getPrice()));
+        holder.tv_item_name.setText(item.getName());
+        holder.tv_item_content.setText(item.getContent());
+        holder.tv_item_price.setText("$ " + Float.toString(item.getPrice()));
 
         holder.itemView.setTag(position);
     }
