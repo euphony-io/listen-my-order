@@ -150,22 +150,16 @@ public class OwnerActivity extends AppCompatActivity {
             speakOn = false;
         }else{
             // To generate acoustic data
-            euTxManager.euInitTransmit(storeName.getText().toString());
-
+            String message = "";
+            message += storeName.getText().toString();
             int index = 0;
             for(MenuData menuData : menuList){
-                euTxManager.euInitTransmit("\n");
-                euTxManager.euInitTransmit(Integer.toString(index));
-                euTxManager.euInitTransmit(" ");
-                euTxManager.euInitTransmit(menuData.getName());
-                euTxManager.euInitTransmit(" ");
-                euTxManager.euInitTransmit(menuData.getContent());
-                euTxManager.euInitTransmit(" ");
-                euTxManager.euInitTransmit(Float.toString(menuData.getPrice()));
+                message += "/n" + Integer.toString(index) + " " + menuData.getName() + " " + menuData.getContent() + " " + Float.toString(menuData.getPrice());
                 index++;
             }
-            
-//            euTxManager.process(-1);
+            euTxManager.euInitTransmit(message);
+            euTxManager.process(-1);
+            System.out.println(message);
             btn_export_menu.setText("Exporting\nMenu...");
             speakOn = true;
         }
