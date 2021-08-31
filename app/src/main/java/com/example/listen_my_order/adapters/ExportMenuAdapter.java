@@ -1,29 +1,29 @@
-package com.example.listen_my_order.activities;
+package com.example.listen_my_order.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.listen_my_order.R;
+import com.example.listen_my_order.activities.MenuData;
 
 import java.util.ArrayList;
 
-public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.CustomViewHolder> {
+public class ExportMenuAdapter extends RecyclerView.Adapter<ExportMenuAdapter.CustomViewHolder> {
 
     private ArrayList<MenuData> menuList;
 
-    public MenuAdapter(ArrayList<MenuData> menuList) {
+    public ExportMenuAdapter(ArrayList<MenuData> menuList) {
         this.menuList = menuList;
     }
 
     @NonNull
     @Override
-    public MenuAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ExportMenuAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_menu, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
 
@@ -31,7 +31,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.CustomViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MenuAdapter.CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ExportMenuAdapter.CustomViewHolder holder, int position) {
         holder.tv_name.setText(menuList.get(position).getName());
         holder.tv_content.setText(menuList.get(position).getContent());
         holder.tv_price.setText("$ " + Float.toString(menuList.get(position).getPrice()));
