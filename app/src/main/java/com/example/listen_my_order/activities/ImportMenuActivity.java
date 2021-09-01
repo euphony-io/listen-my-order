@@ -152,7 +152,7 @@ public class ImportMenuActivity extends AppCompatActivity {
             }
         });
 
-        // setOnClickListener for flaoting action button
+        // setOnClickListener for floating action button
         goShopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
