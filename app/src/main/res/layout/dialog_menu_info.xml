@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/rec_rounded"
+    android:elevation="10dp"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="20dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/tv_menu_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        tools:text="메뉴 이름" />
+
+    <TextView
+        android:id="@+id/tv_menu_content"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rec_rounded_gray"
+        android:gravity="start|top"
+        android:padding="10dp"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        tools:text="메뉴 설명" />
+
+    <TextView
+        android:id="@+id/tv_menu_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        tools:text="$ 0.00" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FF0000"
+            android:text="@string/btn_cancel"
+            android:textAllCaps="false"
+            android:textColor="#6C6C6C"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FF0000"
+            android:text="@string/btn_add"
+            android:textAllCaps="false"
+            android:textColor="#2F5597"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+</LinearLayout>
