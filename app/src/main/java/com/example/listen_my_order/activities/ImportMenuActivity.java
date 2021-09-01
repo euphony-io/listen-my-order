@@ -44,7 +44,7 @@ public class ImportMenuActivity extends AppCompatActivity {
     private Dialog menuInfoDialog;
 
     // Properties
-    private boolean listenOn = true;
+    private boolean listenOn = false;
     private EuRxManager mRxManager = new EuRxManager();
 
     @Override
@@ -178,12 +178,10 @@ public class ImportMenuActivity extends AppCompatActivity {
 
                 Toast.makeText(ImportMenuActivity.this, "Finish importing!", Toast.LENGTH_SHORT).show();
 
-                mRxManager.finish();
                 setImportButton.setText(R.string.btn_start_listen);
                 listenOn = false;
             }
         });
-        mRxManager.listen();
     }
 
     @Override
