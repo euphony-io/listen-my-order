@@ -2,11 +2,13 @@
 
 Listen my order is sample application from the [euphony library](https://github.com/euphony-io/euphony) for ordering food over acoustic data communication.
 Our goal is to help restaurateurs set up low-cost food ordering systems instead of kiosks.
+And to help customers easily order their menu via their phone device.
 
 - #### Features
   - Export the menu list through the speaker.
   - Import the menu list via the microphone.
   - Add a menu to menu list. Menu information consists of name, price and description.
+  - Export the total order list through the speaker.
 
 ### Installation
 
@@ -21,7 +23,8 @@ Our goal is to help restaurateurs set up low-cost food ordering systems instead 
 
 ## Usage
 
-### Restaurant Owner
+<details>
+    <summary>Restaurant Owner</summary>
 
 1. Press 'Export Menu' button
   
@@ -35,7 +38,7 @@ Our goal is to help restaurateurs set up low-cost food ordering systems instead 
   
   ![그림2](https://user-images.githubusercontent.com/80624082/131517757-a6238812-22a0-4d15-bc95-ec88489f9bd5.png)
 
-4. Click 'Export Menu' button to generate sound signal.
+4. Click 'Export Menu' button to generate sound signal
 
   ![그림4](https://user-images.githubusercontent.com/80624082/131518447-a8ccccc9-f232-4849-8c0a-4f61c553c3f0.png)
   
@@ -43,9 +46,28 @@ Our goal is to help restaurateurs set up low-cost food ordering systems instead 
   
   ![그림6](https://user-images.githubusercontent.com/80624082/131518837-7873aa98-fcd4-4d37-8d84-6aa4415bcefe.png)
 
+</details>
 
+<details>
+    <summary>Restaurant Customer</summary>
+  
+1. Press 'Import Menu' button
+  
 
+2. Automatically start listening signal data and when finish transmitting data, menu list is generated
+  
+  
+3. Select menu to order either via checkBox or dialog (in dialog, you can see detail information about menu)
+  
+  
+4. Go to 'Order Menu' page through floating button, and Click 'Export Order' button to generate sound signal
+  
+  
+5. 'Export Order' will change to 'Exporting Order...' and signal will be generated
+  
+  
 
+</details>
 
 ## Contributing
 
